@@ -13,10 +13,6 @@ const Register = require("../Controllers/Register")
 
 
 
-
-
-
-
 Route.post("/Login", Login_Middleware, Login)
 Route.post("/Register", Register_Middleware, Register)
 
