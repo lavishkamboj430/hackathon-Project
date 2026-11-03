@@ -25,12 +25,13 @@ const Generate_Access_Token = (User) => {
     )
 }
 
-const Generate_Register_Token = (UserName, Email, Password) => {
+const Generate_Register_Token = (UserName, Email, Password,PhoneNo) => {
     return Jwt.sign(
         {
             UserName: UserName,
             Email: Email,
-            Password: Password
+            Password: Password,
+            PhoneNo:PhoneNo
         }, process.env.REGISTER_TOKEN,
         { "expiresIn": "15m" }
     )

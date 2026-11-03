@@ -6,7 +6,7 @@ const sendEmail = require("../utils/SendEmail")
 
 const Register = async (req, res) => {
 
-    const { UserName, Email, Password } = req.body
+    const { UserName, Email, Password ,PhoneNo} = req.body
 
     const HashPassword = await Bcrypt.hash(Password, 10)
 
@@ -36,7 +36,7 @@ const Register = async (req, res) => {
 
     }
 
-    const Register_Token = Generate_Register_Token(UserName, Email, HashPassword)
+    const Register_Token = Generate_Register_Token(UserName, Email, HashPassword,PhoneNo)
 
     res.cookie("Register-Token", Register_Token, {
         httpOnly: true,
