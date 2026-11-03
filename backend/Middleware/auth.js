@@ -54,7 +54,6 @@ const protect = async (req, res, next) => {
   }
 };
 
-// Check user role
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!req.user || !roles.includes(req.user.role)) {
@@ -65,7 +64,6 @@ const authorize = (...roles) => {
   };
 };
 
-// Attach user if a valid token exists
 const optionalAuth = async (req, res, next) => {
   try {
     const token = getToken(req);
@@ -78,9 +76,7 @@ const optionalAuth = async (req, res, next) => {
         if (user?.isActive) {
           req.user = user;
         }
-      } catch (error) {
-        // Continue without a user if the token is invalid
-      }
+      } catch (error) {}
     }
 
     next();
