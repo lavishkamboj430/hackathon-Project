@@ -9,6 +9,7 @@ const Port = process.env.PORT || 3005
 const server = http.createServer(app);
 
 // initializeSocket(server)
+
 ConnectDB()
 
 server.listen(Port, "0.0.0.0", () => {
