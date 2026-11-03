@@ -1,12 +1,13 @@
 const Joi = require("joi")
 const UserModel = require("../Models/UserModel")
 const { Validate_Email, Validate_Password, Validate_UserName } = require("../Validation/validation")
-const { Validate_PhoneNo } = require("../Validation/Validation")
+const { Validate_PhoneNo } = require("../Validation/validation")
 
 const Register_Middleware = async (req, res, next) => {
 
-    const { UserName, Email, Password , PhoneNo } = req.body
+    const { UserName, Email, Password ,Confirm_Password, PhoneNo } = req.body
 
+    console.log(req.body)
 
     const Schema = Joi.object({
         UserName: Validate_UserName(),
@@ -20,7 +21,7 @@ const Register_Middleware = async (req, res, next) => {
 
     if (error) {
 
-        return res.status(301).json(
+        return res.status(300).json(
             {
                 Success: false,
                 Message: "Invalid Email and Password"
@@ -33,7 +34,8 @@ const Register_Middleware = async (req, res, next) => {
             { Email: Email }
         ]
     })
-
+    console.log(isExist)
+    
     if (isExist.length) {
         return res.status(400).json(
             {

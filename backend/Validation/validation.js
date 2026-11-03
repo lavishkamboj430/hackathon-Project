@@ -13,7 +13,7 @@ const Validate_UserName = () => {
 }
 
 const Validate_PhoneNo = () => {
-    return Joi.number().min(10).max(10).required()
+    return Joi.number().required()
 }
 
 module.exports = { Validate_Email, Validate_Password, Validate_UserName,Validate_PhoneNo }
