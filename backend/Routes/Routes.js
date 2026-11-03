@@ -25,7 +25,7 @@ Route.post("/Resend-Register", ReSend_Register_Middleware, Resend_Register)
 
 Route.post("/Verify-Register-Otp", Verify_Register_Middleware, Verify_Register)
 
-Route.post("/Add-Items",Add_Items)
+// Route.post("/Add-Items",Add_Items)
 
 
 
