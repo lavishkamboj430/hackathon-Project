@@ -31,7 +31,7 @@ const ItemSchema = new mongoose.Schema({
   lendedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    // required: true,
   },
   availabe:{
     type:Boolean,

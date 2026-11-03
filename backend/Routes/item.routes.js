@@ -5,15 +5,19 @@ const {
   getItemById,
   updateItem,
   deleteItem,
-} = require("../Controllers/items.controller");
-const { uploadImage } = require("../utils/UploadImage.js");
-const { protect } = require("../Middleware/auth.js");
-const router = express.Router();
+} = require("../Controllers/items.controller.js");
+const {protect}= require("../Middleware/auth.js")
 
-router.route("/").post(protect, uploadImage.array("images", 4), createItem);
-router.route("/").get(getAllItems);
-router.route("/:id").get(getItemById);
-router.route("/:id").patch(protect, updateItem);
-router.route("/:id").delete(protect, deleteItem);
+const itemsRoute = express.Router();
 
-module.exports = router;
+itemsRoute.post("/", createItem);
+
+itemsRoute.get("/", getAllItems);
+
+itemsRoute.get("/:id", getItemById);
+
+itemsRoute.put("/:id", updateItem);
+
+itemsRoute.delete("/:id", deleteItem);
+
+module.exports = itemsRoute;
