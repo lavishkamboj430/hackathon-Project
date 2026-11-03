@@ -21,13 +21,12 @@ const ItemSchema = new mongoose.Schema({
     },
   ],
   location: {
-    type: string,
+    type: String,
     required: true,
   },
   borrowedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
   },
   lendedBy: {
     type: mongoose.Schema.Types.ObjectId,
@@ -36,5 +35,9 @@ const ItemSchema = new mongoose.Schema({
   },
   availabe:{
     type:Boolean,
+    default:true
   }
 });
+const ItemModel = mongoose.model("items",ItemSchema)
+
+module.exports = ItemModel
