@@ -14,7 +14,7 @@ const Register = require("../Controllers/Register")
 const Resend_Register = require("../Controllers/Resend_Register")
 const Verify_Register = require("../Controllers/Verify_Register")
 const Verify_Register_Middleware = require("../Middleware/Verify_Register_Middleware")
-const Add_Items = require("../Controllers/Add_Items_Middleware")
+// const Add_Items = require("../Controllers/Add_Items_Middleware")
 
 
 Route.post("/Login", Login_Middleware, Login)
