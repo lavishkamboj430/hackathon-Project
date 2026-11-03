@@ -4,7 +4,7 @@ const ItemModel = require("../models/Items.models");
 exports.createItem = async (req, res) => {
   try {
     const { title, category, description, location } = req.body;
-
+ console.log("enter..");
     if (!title || !description || !location) {
       return res.status(400).json({
         success: false,
@@ -17,16 +17,17 @@ exports.createItem = async (req, res) => {
         public_id: file.public_id,
         url: file.path || file.url,
       })) || [];
-
-    const item = await ItemModel.create({
-      title,
-      category,
-      description,
-      location,
-      images,
-      lendedBy: req.user._id,
-    });
-
+        console.log("error ? occured..1");
+        const item = await ItemModel.create({
+          title,
+          category,
+          description,
+          location,
+          images,
+          // lendedBy: req.user._id,
+        });
+        
+        console.log("error ? occured..2");
     return res.status(201).json({
       success: true,
       message: "Item created successfully",

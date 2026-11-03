@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/UserModel.js");
-const { createError } = require("../utils/apiResponse.js");
+const User = require("../Models/UserModel.js");
 
 const getToken = (req) => {
   if (req.cookies?.token) {
@@ -22,7 +21,7 @@ const protect = async (req, res, next) => {
     const token = getToken(req);
 
     if (!token) {
-      return next(createError("Authentication required. Please log in.", 401));
+      return next("Authentication required. Please log in.", 401);
     }
 
     let decoded;
@@ -31,20 +30,20 @@ const protect = async (req, res, next) => {
       decoded = jwt.verify(token, process.env.JWT_SECRET);
     } catch (error) {
       if (error.name === "TokenExpiredError") {
-        return next(createError("Session expired. Please log in again.", 401));
+        return next("Session expired. Please log in again.", 401);
       }
 
-      return next(createError("Invalid authentication token.", 401));
+      return next("Invalid authentication token.", 401);
     }
 
     const user = await User.findById(decoded.id).select("-password");
 
     if (!user) {
-      return next(createError("User no longer exists.", 401));
+      return next("User no longer exists.", 401);
     }
 
     if (!user.isActive) {
-      return next(createError("Your account has been deactivated.", 403));
+      return next("Your account has been deactivated.", 403);
     }
 
     req.user = user;
@@ -57,7 +56,7 @@ const protect = async (req, res, next) => {
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!req.user || !roles.includes(req.user.role)) {
-      return next(createError("Access denied.", 403));
+      return next("Access denied.", 403);
     }
 
     next();
