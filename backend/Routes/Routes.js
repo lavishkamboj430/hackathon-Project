@@ -12,6 +12,8 @@ const ReSend_Register_Middleware = require("../Middleware/Resend_Register_Middle
 const Login = require("../Controllers/Login")
 const Register = require("../Controllers/Register")
 const Resend_Register = require("../Controllers/Resend_Register")
+const Verify_Register = require("../Controllers/Verify_Register")
+const Verify_Register_Middleware = require("../Middleware/Verify_Register_Middleware")
 
 
 Route.post("/Login", Login_Middleware, Login)
@@ -19,6 +21,8 @@ Route.post("/Login", Login_Middleware, Login)
 Route.post("/Register", Register_Middleware, Register)
 
 Route.post("/Resend-Register", ReSend_Register_Middleware, Resend_Register)
+
+Route.post("/Resend-Register-Otp", Verify_Register_Middleware, Verify_Register)
 
 
 
