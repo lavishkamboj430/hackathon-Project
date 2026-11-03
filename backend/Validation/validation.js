@@ -12,4 +12,8 @@ const Validate_UserName = () => {
     return Joi.string().min(4).max(25).required()
 }
 
-module.exports = { Validate_Email, Validate_Password, Validate_UserName }
+const Validate_PhoneNo = () => {
+    return Joi.number().min(10).max(10).required()
+}
+
+module.exports = { Validate_Email, Validate_Password, Validate_UserName,Validate_PhoneNo }

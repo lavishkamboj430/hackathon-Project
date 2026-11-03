@@ -1,6 +1,7 @@
 const Joi = require("joi")
 const UserModel = require("../Models/UserModel")
 const { Validate_Email, Validate_Password, Validate_UserName } = require("../Validation/validation")
+const { Validate_PhoneNo } = require("../Validation/Validation")
 
 const Register_Middleware = async (req, res, next) => {
 
@@ -11,7 +12,8 @@ const Register_Middleware = async (req, res, next) => {
         UserName: Validate_UserName(),
         Email: Validate_Email(),
         Password: Validate_Password(),
-        Confirm_Password:Validate_Password()
+        Confirm_Password:Validate_Password(),
+        PhoneNo:Validate_PhoneNo()
     })
 
     const { error } = Schema.validate(req.body)
